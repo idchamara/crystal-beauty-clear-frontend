@@ -1,40 +1,37 @@
-import { useState } from "react";
+import { useState } from "react"
+import toast from "react-hot-toast"
+import mediaUpload from "../utils/mediaUpload"
+
+// https://llsxrgvhyhqqmpafwugj.supabase.co
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxsc3hyZ3ZoeWhxcW1wYWZ3dWdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyMTM4MjMsImV4cCI6MjA1OTc4OTgyM30.DCzRSKHMlmW0ERmDOD-hTJ5z8k9sN4oR3HFxj0dXpg8
+
 
 export default function Testing() {
-    const [number,setNumber] = useState(0)
-    const [status,setStatus] = useState("pending")
+    const [file, setFile] = useState(null)
+    
+    function handleUpload(){
+        mediaUpload(file).then(
+            (url)=>{
+                console.log(url)
+                toast.success("File Uploaded Successfully")
+            }
+        ).catch(
+            (error)=>{
+                console.log(error)
+                toast.error("File Upload Failed")
+            }
+        )
 
-    function increment() {
-        let newValue = number + 1;
-        setNumber(newValue);
-       // number = number + 1;
-       // console.log(number);
     }
-
-    function decrement() {
-        let newValue = number - 1;
-        setNumber(newValue);
-      //  number = number - 1;
-      //  console.log(number);
-    }
-
+    
     return (
         <div className="w-full h-scree flex flex-col items-center justify-center">
-            <span className="text-3xl font-bold">{number}</span>
-            <div className="w-full flex justify-center">
-                <button onClick={increment} className="bg-blue-500 text-white rounded-lg p-2 m-2 w-[60px] cursor-pointer">+</button>
-                <button onClick={decrement} className="bg-blue-500 text-white rounded-lg p-2 m-2 w-[60px] cursor-pointer">-</button>
-            </div>
-
-            <span className="text-3xl font-bold">{status}</span>
-            <div className="w-full flex justify-center">
-                <button onClick={()=>{
-                    setStatus("passed")
-                }} className="bg-blue-500 text-white rounded-lg p-2 m-2 w-[60px] cursor-pointer">Pass</button>
-                <button onClick={()=>{
-                    setStatus("failed")
-                }} className="bg-blue-500 text-white rounded-lg p-2 m-2 w-[60px] cursor-pointer">Fail</button>
-            </div>
+            <input type="file" onChange={
+                (e)=>{
+                    setFile(e.target.files[0]);
+                }
+            } />
+            <button onClick={handleUpload} className="bg-gray-700 text-white p-2 rounded-lg">Upload</button>
 
         </div>
     )    
