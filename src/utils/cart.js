@@ -43,3 +43,22 @@ export function removeFromCart(productId){
     localStorage.setItem("cart", JSON.stringify(cart))
     return cart
 }
+
+export function getTotal(){
+    let cart = getCart();
+    let total = 0;
+    cart.forEach((prdct) => {
+        total += prdct.price * prdct.quantity
+    })
+    return total
+}
+
+export function getTotalForLabelledPrice(){
+    let cart = getCart();
+    let total = 0;
+    cart.forEach((prdct) => {
+        total += prdct.labeledPrice * prdct.quantity
+    })
+    return total
+}
+    
