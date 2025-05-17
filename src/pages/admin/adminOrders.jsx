@@ -50,7 +50,7 @@ export default function AdminOrdersPage(){
         
     }
     return(
-        <div className="w-full h-full">
+        <div className="w-full h-full rounded-lg relative overflow-x-scroll">
             {
                 loaded?
                 <div className="w-full h-full ">
@@ -68,14 +68,14 @@ export default function AdminOrdersPage(){
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="text-gray-700">
                             {
                         orders.map(
                             (order)=>{
                                 return (
                                     <tr 
                                     key={order.orderId} 
-                                    className="border-b-2 border-gray-300 text-center hover:bg-gray-100 cursor-pointer"
+                                    className=" border-b-2 border-gray-300 text-center hover:bg-gray-100 cursor-pointer"
                                     >
                                         <td className="p-2">{order.orderId}</td>
                                         <td className="p-2">{order.email}</td>

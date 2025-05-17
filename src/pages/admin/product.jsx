@@ -54,7 +54,7 @@ export default function AdminProductsPage(){
  
 
     return (
-        <div className="w-full h-full rounded-lg relative">
+        <div className="w-full h-full rounded-lg relative overflow-x-scroll">
             <Link to={"/admin/addProduct"} className="text-white bg-gray-700 absolute p-[12px] text-3xl rounded-full cursor-pointer hover:bg-gray-300 hover:text-gray-700 transition-colors duration-300 right-5 bottom-5">
                 <FaPlus />
             </Link>
@@ -71,7 +71,7 @@ export default function AdminProductsPage(){
                     </tr>
 
                 </thead>
-                <tbody>
+                <tbody className="text-gray-700">
                 {
                 products.map(
                     (product,index)=>{
